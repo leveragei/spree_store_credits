@@ -39,7 +39,6 @@ Spree::Order.class_eval do
   private
 
   # credit or update store credit adjustment to correct value if amount specified
-  #
   def process_store_credit
     @store_credit_amount = BigDecimal.new(@store_credit_amount.to_s).round(2)
 
@@ -49,7 +48,8 @@ Spree::Order.class_eval do
     if @store_credit_amount <= 0
       adjustments.store_credits.destroy_all
     else
-      if sca = adjustments.store_credits.first
+      sca = adjustments.store_credits.first
+      if sca
         sca.update_attributes({:amount => -(@store_credit_amount)})
       else
         # create adjustment off association to prevent reload
@@ -57,7 +57,7 @@ Spree::Order.class_eval do
       end
     end
 
-    # recalc totals and ensure payment is set to new amount
+    # recalculate totals and ensure payment is set to new amount
     update_totals
     pending_payments.first.amount = total if pending_payments.first
   end
