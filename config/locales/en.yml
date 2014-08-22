@@ -17,6 +17,14 @@ en:
     was_fully_used: "was fully used"
     was_partially_used: "was partially used"
     cannot_edit_used: "Cannot be edited because it has been used"
+    promotion_rule_types:
+      user_signup:
+        name: "User Signup"
+        description: "When user signs up"
+    promotion_action_types:
+      give_store_credit:
+        name: "Give Store Credit"
+        description: "Gives the user store credit of the amount specified"
     errors:
       messages:
         store_credit_minimum_order_not_reach: "Order's item total is less than the minimum allowed (%{amount}) to use store credit."

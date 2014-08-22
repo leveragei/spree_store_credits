@@ -1,5 +1,6 @@
 module SpreeStoreCredits
   class Engine < Rails::Engine
+    require 'spree/core'
     isolate_namespace Spree
     engine_name 'spree_store_credits'
 
@@ -20,6 +21,5 @@ module SpreeStoreCredits
 
     config.to_prepare &method(:activate).to_proc
     config.autoload_paths += %W(#{config.root}/lib)
-
   end
 end
