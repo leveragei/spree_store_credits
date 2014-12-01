@@ -32,7 +32,7 @@ module Spree
     end
 
     def compute_amount(order)
-      preferred_amount
+      0
     end
 
     private
