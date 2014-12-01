@@ -3,8 +3,13 @@ module Spree
     preference :amount, :decimal, :default => 0.0
 
     def perform(payload = {})
+      result = false
       user = lookup_user(payload)
-      give_store_credit(user) if user.present?
+      if user.present?
+        give_store_credit(user)
+        result = true
+      end
+      result
     end
 
     def lookup_user(options)
