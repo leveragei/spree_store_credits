@@ -31,6 +31,10 @@ module Spree
       "#{Spree.t(:promotion)} #{promotion.name}"
     end
 
+    def compute_amount(order)
+      preferred_amount
+    end
+
     private
     def create_adjustment(order)
       ::Spree::Adjustment.create!(
