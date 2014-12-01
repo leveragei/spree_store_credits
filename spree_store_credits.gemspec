@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.summary     = 'Provides store credits for a Spree store.'
   s.description = 'Provides store credits for a Spree store.'
   s.required_ruby_version = '>= 2.0.0'
-  s.rubygems_version      = '1.3.6'
+  s.rubygems_version      = '1.3.7'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
