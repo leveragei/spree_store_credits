@@ -4,22 +4,22 @@ module Spree
 
     def perform(payload = {})
       result = false
-      user = lookup_user(payload)
-      if user.present?
-        give_store_credit(user)
-        result = true
+      order = payload[:order]
+
+      if order
+        user = lookup_user(order)
+        if user.present?
+          give_store_credit(user)
+          create_adjustment(order)
+          result = true
+        end
       end
+
       result
     end
 
-    def lookup_user(options)
-      user = options[:user]
-      unless user
-        if options[:order]
-          user = ::Spree::User.find_by_email(options[:order].email)
-        end
-      end
-      user
+    def lookup_user(order)
+      ::Spree::User.find_by_email(order.email)
     end
 
     def give_store_credit(user)
@@ -29,6 +29,17 @@ module Spree
 
     def credit_reason
       "#{Spree.t(:promotion)} #{promotion.name}"
+    end
+
+    private
+    def create_adjustment(order)
+      ::Spree::Adjustment.create!(
+          amount: preferred_amount,
+          order: order,
+          adjustable: order,
+          source: self,
+          label: "#{Spree.t(:promotion)} (#{promotion.name})"
+      )
     end
   end
 end
