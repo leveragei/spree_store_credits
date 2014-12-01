@@ -8,7 +8,13 @@ module Spree
     end
 
     def lookup_user(options)
-      options[:user]
+      user = options[:user]
+      unless user
+        if options[:order]
+          user = ::Spree::User.find_by_email(options[:order].email)
+        end
+      end
+      user
     end
 
     def give_store_credit(user)
