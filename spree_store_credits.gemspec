@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_paths = ["lib"]
 
-  s.add_dependency 'rails', '~> 4.1.4'
+  s.add_dependency 'rails', '~> 4.1.8'
 
-  spree_version = '~> 2.3.1'
+  spree_version = '~> 2.4.0'
   s.add_dependency 'spree_api', spree_version
   s.add_dependency 'spree_core', spree_version
   s.add_dependency 'spree_frontend', spree_version
